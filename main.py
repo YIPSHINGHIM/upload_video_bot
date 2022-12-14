@@ -2,12 +2,8 @@
 import os
 import time
 
-
-from dotenv import load_dotenv
-
-
-
 import undetected_chromedriver as driver
+from dotenv import load_dotenv
 from selenium import webdriver
 
 # from selenium.webdriver import Chrome
@@ -36,18 +32,44 @@ WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.NAME, 'iden
 time.sleep(2)
 WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.NAME, 'Passwd'))).send_keys(f'{password}\n')
 
+
+# * find the upload button and click it
 upload_button = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.ID, 'upload-button')))
 upload_button.click()
 
 
-video_path = './web_driver_method/video/CleanShot.mp4'
+# * upload the video 
+video_path = './video/CleanShot.mp4'
 video_abs_path = os.path.abspath(video_path)
 print(video_abs_path)
 
 upload_slot = WebDriverWait(driver, 20).until(EC.invisibility_of_element_located((By.XPATH,'/html/body/ytcp-uploads-dialog/tp-yt-paper-dialog/div/ytcp-uploads-file-picker/div/input')))
-
 upload_slot.send_keys(video_abs_path)
 
+# * set the video is not for child 
+no_for_kid_button = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.NAME, 'VIDEO_MADE_FOR_KIDS_NOT_MFK')))
+no_for_kid_button.click()
+time.sleep(1)
 
-time.sleep(10000000)
+
+# * set the video is not for child 
+visibility_button = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.ID, 'step-badge-3')))
+visibility_button.click()
+time.sleep(1)
+
+# * make the video private 
+private_button = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.ID, 'private-radio-button')))
+private_button.click()
+time.sleep(3)
+
+# * done 
+print("done")
+done_button = WebDriverWait(driver, 20).until(EC.invisibility_of_element_located((By.ID, 'done-button')))
+done_button.click()
+print("done 2 ")
+time.sleep(1)
+
+
+
+time.sleep(10000)
 driver.close()
