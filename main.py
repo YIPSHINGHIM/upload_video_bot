@@ -63,11 +63,17 @@ private_button.click()
 time.sleep(3)
 
 # * done 
-print("done")
-done_button = WebDriverWait(driver, 20).until(EC.invisibility_of_element_located((By.ID, 'done-button')))
+done_button = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.ID, 'done-button')))
 done_button.click()
+time.sleep(1)
+
+# * close button
+print("done")
+close_button = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, '/html/body/ytcp-uploads-still-processing-dialog/ytcp-dialog/tp-yt-paper-dialog/div[3]/ytcp-button')))
+close_button.click()
 print("done 2 ")
 time.sleep(1)
+
 
 
 
