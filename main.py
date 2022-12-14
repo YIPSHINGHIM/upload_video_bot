@@ -21,21 +21,19 @@ password = os.getenv('password')
 # opts.add_argument("--window-size=600,300")
 
     
-# driver = driver.Chrome(executable_path=chrome_driver_path
-#                 # ,options=opts
-# )
+driver = driver.Chrome(executable_path=chrome_driver_path
+                # ,options=opts
+)
 
-# driver.get("https://studio.youtube.com")
-# # driver.set_window_size(1689, 1056)
+driver.get("https://studio.youtube.com")
+# driver.set_window_size(1689, 1056)
 
-# time.sleep(2)
-# WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.NAME, 'identifier'))).send_keys(f'{email}\n')
-# time.sleep(2)
-# WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.NAME, 'Passwd'))).send_keys(f'{password}\n')
+time.sleep(2)
+WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.NAME, 'identifier'))).send_keys(f'{email}\n')
+time.sleep(2)
+WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.NAME, 'Passwd'))).send_keys(f'{password}\n')\
 
-video_path = './video/CleanShot.mp4'
-
-file_name = os.listdir('../video2')
+file_name = os.listdir('./video')
 print(file_name)
 
 video_path_list = []
@@ -89,7 +87,8 @@ def upload_func(video_path):
 # upload_func(video_path)
 
 
-
+for filname in video_path_list:
+    upload_func(filname)
 
 
 time.sleep(10000)
